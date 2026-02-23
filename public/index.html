@@ -1,43 +1,437 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mariano Roberto Loo Ríos — Iquitos, Peru</title>
+  <meta name="description" content="Profile page for Mariano Roberto Loo Ríos from Iquitos, Peru." />
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>Sample React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+  <!-- Open Graph -->
+  <meta property="og:title" content="Mariano Roberto Loo Ríos — Iquitos, Peru" />
+  <meta property="og:description" content="Profile page template for Mariano Roberto Loo Ríos from Iquitos, Peru." />
+  <meta property="og:type" content="website" />
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+  <style>
+    :root{
+      --bg: #0b0f16;
+      --card: rgba(255,255,255,0.07);
+      --card2: rgba(255,255,255,0.10);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.72);
+      --line: rgba(255,255,255,0.14);
+      --shadow: 0 18px 50px rgba(0,0,0,0.45);
+      --radius: 18px;
+      --max: 1040px;
+    }
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg: #f7f7fb;
+        --card: rgba(0,0,0,0.05);
+        --card2: rgba(0,0,0,0.07);
+        --text: rgba(0,0,0,0.88);
+        --muted: rgba(0,0,0,0.62);
+        --line: rgba(0,0,0,0.12);
+        --shadow: 0 18px 50px rgba(0,0,0,0.12);
+      }
+    }
+
+    *{ box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background: radial-gradient(1200px 700px at 20% 10%, rgba(120,160,255,0.16), transparent 60%),
+                  radial-gradient(900px 600px at 90% 30%, rgba(0,200,160,0.14), transparent 55%),
+                  var(--bg);
+      line-height: 1.55;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 24px; }
+
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(to bottom, rgba(10,14,20,0.65), rgba(10,14,20,0.25));
+      border-bottom: 1px solid var(--line);
+    }
+
+    @media (prefers-color-scheme: light){
+      header{
+        background: linear-gradient(to bottom, rgba(247,247,251,0.85), rgba(247,247,251,0.55));
+      }
+    }
+
+    .nav{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 24px;
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .brand{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+    }
+
+    .dot{
+      width: 12px; height: 12px; border-radius: 999px;
+      background: linear-gradient(135deg, rgba(120,160,255,1), rgba(0,200,160,1));
+      box-shadow: 0 0 0 6px rgba(120,160,255,0.12);
+    }
+
+    nav a{
+      opacity: 0.85;
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+    nav a:hover{
+      opacity: 1;
+      background: var(--card);
+      text-decoration: none;
+    }
+
+    .hero{
+      margin-top: 18px;
+      border-radius: calc(var(--radius) + 8px);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+      background: var(--card);
+    }
+
+    .heroTop{
+      position: relative;
+      min-height: 320px;
+      padding: 34px 26px;
+      display: grid;
+      align-content: end;
+      gap: 12px;
+      background:
+        linear-gradient(to top, rgba(0,0,0,0.65), rgba(0,0,0,0.12)),
+        url("https://upload.wikimedia.org/wikipedia/commons/3/34/Iquitos%2C_Per%C3%BA.jpg") center/cover no-repeat;
+    }
+
+    @media (prefers-color-scheme: light){
+      .heroTop{
+        background:
+          linear-gradient(to top, rgba(255,255,255,0.25), rgba(255,255,255,0.02)),
+          url("https://upload.wikimedia.org/wikipedia/commons/3/34/Iquitos%2C_Per%C3%BA.jpg") center/cover no-repeat;
+      }
+    }
+
+    .kicker{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(10px);
+      font-size: 14px;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .hero h1{
+      margin: 0;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: -0.6px;
+    }
+
+    .hero p{
+      margin: 0;
+      max-width: 70ch;
+      color: rgba(255,255,255,0.86);
+      font-size: 16px;
+    }
+
+    .heroBottom{
+      padding: 18px 22px 22px;
+      display: grid;
+      gap: 14px;
+      background: linear-gradient(to bottom, var(--card), transparent);
+    }
+
+    .chips{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip{
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--card2);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .grid{
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+    }
+
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      border-radius: var(--radius);
+      background: var(--card);
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+      overflow: hidden;
+    }
+
+    .card .inner{ padding: 18px 18px; }
+
+    .card h2{
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing: -0.2px;
+    }
+
+    .muted{ color: var(--muted); }
+
+    .list{
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .list li{
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: var(--card2);
+    }
+
+    .twoCol{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 520px){
+      .twoCol{ grid-template-columns: 1fr; }
+    }
+
+    .btnRow{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: var(--card2);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .btn:hover{ background: var(--card); text-decoration: none; }
+
+    footer{
+      margin: 22px 0 10px;
+      padding: 14px 0 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Mariano Roberto Loo Ríos",
+    "homeLocation": {
+      "@type": "Place",
+      "name": "Iquitos, Loreto, Peru"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <header>
+    <div class="nav" role="navigation" aria-label="Primary">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Mariano Roberto Loo Ríos</span>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#highlights">Highlights</a>
+        <a href="#iquitos">Iquitos</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" aria-label="Hero">
+      <div class="heroTop">
+        <div class="kicker" title="Location">
+          <span aria-hidden="true">📍</span>
+          <span>Iquitos, Peru</span>
+        </div>
+        <h1>Mariano Roberto Loo Ríos</h1>
+        <p>
+          Profile page template — add your biography, work, and links here.
+        </p>
+      </div>
+      <div class="heroBottom">
+        <div class="chips" aria-label="Quick tags">
+          <span class="chip">From: Iquitos (Loreto)</span>
+          <span class="chip">Peruvian Amazon</span>
+          <span class="chip">Add a tagline</span>
+        </div>
+        <div class="btnRow" aria-label="Links">
+          <!-- Replace # with your real links -->
+          <a class="btn" href="#" aria-label="LinkedIn link">LinkedIn</a>
+          <a class="btn" href="#" aria-label="Portfolio link">Portfolio</a>
+          <a class="btn" href="#contact" aria-label="Jump to contact">Contact</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Content">
+      <article id="about" class="card">
+        <div class="inner">
+          <h2>About</h2>
+          <p class="muted">
+            Write a short bio here. Keep it to 3–6 sentences: what you do, what you care about,
+            and what you’re working on now.
+          </p>
+
+          <div class="twoCol" style="margin-top: 14px;">
+            <div class="card" style="box-shadow:none;">
+              <div class="inner">
+                <h2 style="font-size:16px; margin-bottom:8px;">What I do</h2>
+                <ul class="list">
+                  <li><strong>Focus:</strong> <span class="muted">Add your focus area</span></li>
+                  <li><strong>Strengths:</strong> <span class="muted">Add 3–5 strengths</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="card" style="box-shadow:none;">
+              <div class="inner">
+                <h2 style="font-size:16px; margin-bottom:8px;">Now</h2>
+                <ul class="list">
+                  <li><strong>Current:</strong> <span class="muted">Add what you’re doing now</span></li>
+                  <li><strong>Open to:</strong> <span class="muted">Add opportunities / collaborations</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <aside id="highlights" class="card">
+        <div class="inner">
+          <h2>Highlights</h2>
+          <ul class="list">
+            <li>
+              <strong>Project / Role</strong><br />
+              <span class="muted">One sentence describing impact, results, or what you built.</span>
+            </li>
+            <li>
+              <strong>Award / Milestone</strong><br />
+              <span class="muted">Add something you’re proud of.</span>
+            </li>
+            <li>
+              <strong>Community</strong><br />
+              <span class="muted">Add volunteer work, mentoring, or local involvement.</span>
+            </li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+
+    <section id="iquitos" class="card" style="margin-top: 18px;">
+      <div class="inner">
+        <h2>About Iquitos</h2>
+        <p class="muted">
+          Iquitos is a major city in Peru’s Amazon region and is widely described as the largest city
+          that can’t be reached by road (access is primarily by air and river). It’s also the capital
+          of the Loreto Region and a key river port on the Amazon.
+        </p>
+        <ul class="list">
+          <li><strong>Region:</strong> <span class="muted">Loreto, Peru</span></li>
+          <li><strong>Known for:</strong> <span class="muted">Amazon gateway, river culture, rainforest access</span></li>
+          <li><strong>Travel access:</strong> <span class="muted">Air + river routes</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="card" style="margin-top: 18px;">
+      <div class="inner">
+        <h2>Contact</h2>
+        <p class="muted">Replace the placeholders with your real contact details.</p>
+
+        <div class="twoCol">
+          <div>
+            <ul class="list">
+              <li><strong>Email:</strong> <span class="muted">yourname@example.com</span></li>
+              <li><strong>Location:</strong> <span class="muted">Iquitos, Peru</span></li>
+            </ul>
+          </div>
+          <div>
+            <ul class="list">
+              <li><strong>WhatsApp:</strong> <span class="muted">+51 ___ ___ ___</span></li>
+              <li><strong>Social:</strong> <span class="muted">@yourhandle</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="btnRow">
+          <a class="btn" href="mailto:yourname@example.com">Email me</a>
+          <a class="btn" href="#" title="Replace with your CV URL">Download CV</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>
+        Background photo: “Iquitos, Perú” (Laura de Marco) via Wikimedia Commons — CC BY 2.0.
+      </div>
+      <div style="margin-top:6px;">
+        © <span id="y"></span> Mariano Roberto Loo Ríos
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
 </html>
